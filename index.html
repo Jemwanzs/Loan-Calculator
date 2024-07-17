@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator by James Sammy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="Container">
+        <div class="Calculator">
+            <form id="loan-form">
+                <div>
+                    <label class="Title1">Loan Calculator</label>
+                </div>
+                <div>
+                    <label class="Title">By James Sammy</label>
+                </div>
+                <div class="FormRow">
+                    <!--INPUT FIELDS PART 1-->
+                    <div class="FormItem">
+                        <label for="borrowedAmount">Borrowed Amount</label>
+                        <input type="text" id="borrowedAmount" name="borrowedAmount" required
+                            oninput="formatNumberInput(this)">
+                    </div>
+                    <div class="FormItem">
+                        <label for="loanTerm">Loan Period (Months)</label>
+                        <input type="text" id="loanTerm" name="loanTerm" required oninput="formatNumberInput(this)">
+                    </div>
+                </div>
+                <div class="FormRow">
+                    <!--INPUT FIELDS PART 2-->
+                    <div class="FormItem">
+                        <label for="interestRate">Annual Interest rate (%)</label>
+                        <input type="text" step="0.01" id="interestRate" name="interestRate" required max="100"
+                            oninput="formatNumberInput(this)">
+                    </div>
+                    <div class="FormItem">
+                        <label for="addedAmount">Monthly Added Payment</label>
+                        <!--<input type="text" id="addedAmount" name="addedAmount" required-->
+                        <input type="text" id="addedAmount" name="addedAmount" disabled
+                            oninput="formatNumberInput(this)">
+                    </div>
+                </div>
+                <div class="Buttons">
+                    <input type=" button" value="Calculate" onclick="calculateLoan()" class="EqualOperator">
+                    <input type="button" value="Amortization" onclick="generateAmortizationTable()"
+                        class="EqualOperator">
+                </div>
+            </form>
+            <!--THE RESULTS TABLE-->
+            <div id="results" class="Results">
+                <h2 class="Head1">Loan Summary</h2>
+                <table>
+                    <tr>
+                        <td>Borrowed Amount:</td>
+                        <td id="borrowedAmt">NaN</td>
+                    </tr>
+                    <tr>
+                        <td>Loan Period (months):</td>
+                        <td id="loanPeriod">NaN</td>
+                    </tr>
+                    <tr>
+                        <td>Annual Interest Rate:</td>
+                        <td id="AnnualinterestRate">NaN</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>Monthly Payment:</td>
+                        <td id="monthlyPayment">NaN</td>
+                    </tr>
+                    <tr>
+                        <td>Total Payment:</td>
+                        <td id="totalPayment">NaN</td>
+                    </tr>
+                    <tr>
+                        <td>Interest Amount:</td>
+                        <td id="interestAmount">NaN</td>
+                    </tr>
+                </table>
+            </div>
+            <!--LOAN SCHEDULE TABLE-->
+            <div id="amortizationTable" class="Results" style="display:none;">
+                <h2 class="Head1">Loan Schedule</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Payment</th>
+                            <th>Interest</th>
+                            <th>Principal</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--Loan Schedule here-->
+                        <!--NOTE THAT-->
+                        <!-- Amortization schedule rows will be added here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="Buttons">
+                <button id="printButton">Print Schedule</button>
+                <!--<input type="button" value="New Calculation" onclick="calculateLoan()" class="EqualOperator">-->
+            </div>
+        </div>
+    </div>
+    <!--include and execute an external JavaScript file in a web page.-->
+    <script src="script.js"></script>
+</body>
+
+</html>
